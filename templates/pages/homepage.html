@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance Information App</title>
+    <link type="text/css" rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- /styles -->
+
+    <!-- favicons -->
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
+    <!-- /favicons -->
+</head>
+<body onload="toggleResults()">
+    &nbsp;
+    <div class="container">
+        <h2 align="center">Finance Information</h2>
+    </div>
+    &nbsp;
+    <div class="container">
+        <div class="container">
+            <form id="myForm" action="/" method="POST">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label>Stock Symbol</label>
+                        <input type="text" class="form-control" name="stockSymbol" id="stockSymbol" placeholder="MSFT" required value={{stockSymbol}}></input>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        &nbsp;
+        <div class="container" style="display: none" id="error">
+            <span>{{error_code}}</span><br>
+            <span style="color:red">{{error}}</span>
+        </div>
+        &nbsp;
+        <div class="container" style="display: none" id="results">
+            <table class="table col-md-6" >
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="row">Today's Date: </th>
+                        <td>{{curr_date}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Company Name: </th>
+                        <td>{{company_name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Price: </th>
+                        <td>USD {{price}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Change: </th>
+                        <td>USD {{change}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Percent Change: </th>
+                        <td>{{percent_change}}%</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleResults() {
+            var x = document.getElementById("results");
+            var y = document.getElementById("error");
+            if (`{{company_name}}`) {
+                x.style.display = "block";
+            }
+            if (`{{error}}`) {
+                y.style.display = "block";
+            }
+        }
+    </script>
+
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        defer></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        defer></script>
+</body>
+</html>

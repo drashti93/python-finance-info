@@ -56,11 +56,13 @@
                     </tr>
                     <tr>
                         <th scope="row">Change: </th>
-                        <td>USD {{change}}</td>
+                        <td style="display: none; color:green" id="positive_change">USD +{{change}}</td>
+                        <td style="display: none; color:red" id="negative_change">USD {{change}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Percent Change: </th>
-                        <td>{{percent_change}}%</td>
+                         <td style="display: none; color:green" id="positive">+{{percent_change}}%</td>
+                        <td style="display: none; color:red" id="negative">{{percent_change}}%</td>
                     </tr>
                 </thead>
             </table>
@@ -71,11 +73,26 @@
         function toggleResults() {
             var x = document.getElementById("results");
             var y = document.getElementById("error");
+            var positive_change = document.getElementById("positive_change")
+            var negative_change = document.getElementById("negative_change")
+            var positive = document.getElementById("positive")
+            var negative = document.getElementById("negative")
             if (`{{company_name}}`) {
                 x.style.display = "block";
             }
             if (`{{error}}`) {
                 y.style.display = "block";
+            }
+            if(`{{change}}` > 0){
+                positive_change.style.display = "block"
+            } else {
+                negative_change.style.display = "block"
+            }
+
+            if(`{{percent_change}}` > 0){
+                positive.style.display = "block"
+            } else {
+                negative.style.display = "block"
             }
         }
     </script>
